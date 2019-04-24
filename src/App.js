@@ -1,53 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
-
+import React, { Component } from 'react'
+import CreateTodo from './containers/CreateTodo'
+import Table from './containers/Table'
 
 class App extends Component {
-  addTask() {
-    console.log("testing adding task?")
-    
-    this.props.onAddTask(this.taskInput.value);
-    this.taskInput.value = '';
-  }
-  deleteTask(id){
-    const tasks = this.state.tasks.filter(tasks => {
-      return tasks.id !== id
-    });
-    // this.props.onDeleteTask(this.taskInput.value);
-    this.setState({
-      tasks
-    });
-  }
-
-
   render() {
-    // console.log(this.props.testStore);
     return (
-       <div>
-          <input type="text" ref={(input) => { this.taskInput = input; }} />
-          <button onClick={this.addTask.bind(this)}>Add task</button>
-          <button onClick={this.deleteTask.bind(this)}>Delete</button>
-              <ul>
-              {this.props.tasks.map((task, index) =>
-              <li key={index}>{task}</li>
-              )}
-              </ul>
+      <div className="App">
+        <div className="container" style={{ marginTop: "80px"}} >
+          <div className="row">
+            <div className="col-lg-10 offset-lg-2 col-md-10 col-sm-12 col-xs-12">
+              <CreateTodo />
+            </div>
+            <Table />
+          </div>
         </div>
+      </div>
     );
   }
 }
 
-export default connect(
-  state => ({
-    tasks: state.tasks
-  }),
-  dispatch => ({
-    onAddTask: (taskName) => {
-      dispatch({ type: 'ADD_TASK', payload: taskName })
-    },
-    // onDeleteTask: (taskId) =>{
-    //   dispatch({type: 'DELETE_TASK', payload: taskId})
-    // }
-  })
-)(App);
-
+export default App;
