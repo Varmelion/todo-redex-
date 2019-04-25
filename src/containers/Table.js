@@ -11,34 +11,29 @@ import { bindActionCreators } from "redux";
 class Table extends Component {
   render() {
     return (
-      <div className="col-lg-10 offset-lg-1 col-md-10 col-sm-12 col-xs-12">
-        <nav style={{ marginTop: "60px" }}>
-          <ol className="breadcrumb">
-            <li
+      <div >
+        <nav >
+            <button
               className={"breadcrumb-item "+ (this.props.visibilityFilter === SHOW_ALL ? 'active' : '') }
               onClick={() => this.props.setVisibilityFilter(SHOW_ALL)}
             >
              All
-            </li>
-            <li
+            </button>
+            <button
                className={"breadcrumb-item "+ (this.props.visibilityFilter === SHOW_COMPLETED ? 'active' : '') }
               onClick={() => this.props.setVisibilityFilter(SHOW_COMPLETED)}
             >
               Completed
-            </li>
-            <li
+            </button>
+            <button
                className={"breadcrumb-item "+ (this.props.visibilityFilter === SHOW_ACTIVE ? 'active' : '') }
               onClick={() => this.props.setVisibilityFilter(SHOW_ACTIVE)}
             >
               Active
-            </li>
-          </ol>
+            </button>
         </nav>
         {this.props.todos.length !== 0 ? (
-          <table
-            style={{ marginTop: "60px" }}
-            className="table table-hover table-dark"
-          >
+          <table>
             <thead>
               <tr>
                 <th scope="col">Todos</th>
@@ -57,14 +52,11 @@ class Table extends Component {
                   </td>
                   <td>
                     <button
-                      
                       onClick={() => this.props.deleteTodo(todo.id)}
-                    
                     >Delee</button>
                     <button
-                      className="fas fa-check-circle"
+                      className="fas fa-check-circle"s
                       onClick={() => this.props.toggleTodo(todo.id)}
-                      style={{ color: "white", fontSize: "20pt" }}
                     >Done</button>
                   </td>
                 </tr>
@@ -72,15 +64,11 @@ class Table extends Component {
             </tbody>
           </table>
         ) : (
-          <div
-            style={{ marginTop: "50px" }}
-            className="col-lg-10 col-md-10 col-xs-12 col-sm-12 offset-lg-1"
-          >
-            <div className="alert alert-danger" role="alert">
+         
+            <div>
               Todo List is empty or Filter results show no results
             </div>
-          </div>
-        )}{" "}
+        )}
       </div>
     );
   }
